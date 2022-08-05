@@ -1,13 +1,122 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;400;700&display=swap");
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing:border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  font-family: 'MuseoModerno', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+p {
+  font-size:1.5rem;
+  font-weight:400;
+}
+
+h1 {
+  font-size:6rem;
+  height:6rem;
+  font-weight:300;
+}
+
+h2 {
+  font-size:3rem;
+  line-height:3rem;
+  font-weight:700;
+}
+
+.app {
+  width:100%;
+  height:100vh;
+  position:relative;
+  background: rgba(0,0,0,0.5);
+  color:#fff;
+}
+
+.app:before {
+  content: '';
+  width:100%;
+  height:100%;
+  background: url('./assets/berlinsummer.jpg') no-repeat center center/cover;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+.search {
+  text-align:center;
+  position:relative;
+  padding-top:1em;
+  margin-bottom:1em;
+}
+
+input {
+  border-radius:24px;
+  font-family: 'MuseoModerno', cursive;
+  color:#fff !important;
+  border: 2px solid rgba(255,255,255,0.25);
+  background-color:rgba(255,255,255,0.1);
+  padding:0.75em 1.5em;
+}
+
+::placeholder {
+  color:rgba(255, 255, 255, 0.9);
+}
+
+.container {
+  max-width:700px;
+  height:88vh;
+  padding: 0 1em;
+  margin:auto;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.top {
+  width: 100%;
+  margin: 1rem auto;
+}
+
+.description {
+  position:relative;
+  right:-90%;
+  transform-origin:0;
+  transform:rotate(270deg);
+}
+
+.bottom {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-evenly;
+  text-align:center;
+  width:100%;
+  margin: 1rem auto;
+  border-radius:24px;
+  background-color:rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding:0.5em;
+}
+
+.bold {
+  font-weight:700;
+}
+
+.small {
+  font-size:1rem;
+  display:flex;
+  gap:0.25em;
+  align-items:center;
+  justify-content:center;
 }
