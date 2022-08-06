@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import { BsWind } from 'react-icons/bs';
+import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2 } from 'react-icons/bs';
 import { FiDroplet } from 'react-icons/fi';
-import { TbTemperature } from 'react-icons/tb';
+import { TbTemperature,TbCloudStorm } from 'react-icons/tb';
+import {MdOutlineWbSunny, MdOutlineWbCloudy} from 'react-icons/md';
+import {TbMist, TbTornado} from 'react-icons/tb';
 
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
         type="text" />
       </div>
 
+
       <div className="container">
         <div className="top">
           <div className="location">
@@ -42,7 +45,18 @@ function App() {
             {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
           </div>
           <div className="description">
-            {data.weather ? <p>{data.weather[0].main}</p> : null}
+            {data.weather ? <div className="des-and-icon">
+            { data.weather[0].main === "Clear" ? <p className="weather-icon"><MdOutlineWbSunny /></p> : null }
+            { data.weather[0].main === "Clouds" ? <p className="weather-icon"><MdOutlineWbCloudy /></p> : null }
+            { data.weather[0].main === "Drizzle" ? <p className="weather-icon"><BsCloudRain /></p> : null }
+            { data.weather[0].main === "Fog" ? <p className="weather-icon"><BsCloudFog2 /></p> : null }
+            { data.weather[0].main === "Mist" ? <p className="weather-icon"><TbMist /></p> : null }
+            { data.weather[0].main === "Rain" ? <p className="weather-icon"><BsCloudDrizzle /></p> : null }
+            { data.weather[0].main === "Snow" ? <p className="weather-icon"><BsCloudSnow /></p> : null }
+            { data.weather[0].main === "Thunderstorm" ? <p className="weather-icon"><TbCloudStorm /></p> : null }
+            { data.weather[0].main === "Tornado" ? <p className="weather-icon"><TbTornado /></p> : null }
+            <p>{data.weather[0].main}</p>
+            </div> : null}
           </div>
         </div>
         {data.main ?  <div className="bottom">
