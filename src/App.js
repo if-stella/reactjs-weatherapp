@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import CountUp from 'react-countup';
 import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2 } from 'react-icons/bs';
 import { FiDroplet } from 'react-icons/fi';
 import { TbTemperature,TbCloudStorm } from 'react-icons/tb';
@@ -42,7 +43,7 @@ function App() {
             <h2>{data.name}</h2>
           </div>
           <div className="temperature">
-            {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
+            {data.main ? <h1><CountUp end={data.main.temp.toFixed()} />°C</h1> : null}
           </div>
           <div className="description">
             {data.weather ? <div className="des-and-icon">
@@ -61,15 +62,17 @@ function App() {
         </div>
         {data.main ?  <div className="bottom">
           <div className="feelslike">
-            {data.main ? <p className="bold">{data.main.feels_like.toFixed()}°C</p> : null}
+            {data.main ? <p className="bold"><CountUp end={data.main.feels_like.toFixed()} />°C</p> : null}
             {data.main ? <p className="small"><TbTemperature />Feels like</p> : null}
           </div>
           <div className="humidity">
-            {data.main ? <p className="bold">{data.main.humidity}%</p> : null}
+            {data.main ? <p className="bold">
+              <CountUp
+              end={data.main.humidity} />%</p> : null}
             {data.main ? <p className="small"><FiDroplet/>Humidity</p> : null}
           </div>
           <div className="wind">
-            {data.wind ? <p className="bold">{data.wind.speed} m/s</p> : null}
+            {data.wind ? <p className="bold"><CountUp end={data.wind.speed} /> m/s</p> : null}
             {data.main ? <p className="small"><BsWind/>Wind</p> : null}
           </div>
         </div> : null}

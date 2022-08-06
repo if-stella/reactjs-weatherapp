@@ -55,7 +55,7 @@ h2 {
 .search {
   text-align:center;
   position:relative;
-  padding-top:1em;
+  padding-top:3em;
   margin-bottom:1em;
 }
 
@@ -74,7 +74,7 @@ input {
 
 .container {
   max-width:700px;
-  height:88vh;
+  height:85vh;
   padding: 0 1em;
   margin:auto;
   position:relative;
