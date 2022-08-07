@@ -11,7 +11,7 @@ function App() {
 
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
-  const [result,setResult] = useState([]);
+  const [imgUrl,setImgUrl] = useState([]);
 
   const AXIOS_KEY = process.env.REACT_APP_AXIOS_KEY;
   const USPLA_KEY = process.env.REACT_APP_USPLA_KEY;
@@ -24,15 +24,20 @@ function App() {
       })
       axios.get(`https://api.unsplash.com/search/photos?page=1&query=${location}&client_id=${USPLA_KEY}`)
       .then((background) => {
-        console.log(background)
-        setResult(background.data.results)
+        setImgUrl(background.data.results[5].urls.regular)
       })
     setLocation('')
     }
   }
 
+  const divStyle = {
+    backgroundImage: 'url(' + imgUrl + ')',
+    height: '100vh',
+    backgroundSize: 'cover',
+  };
+
   return (
-    <div className="app">
+    <div className="app" style={divStyle}>
       <div className="search">
         <input
         value={location}
@@ -41,7 +46,7 @@ function App() {
         placeholder='Enter Location'
         type="text" />
       </div>
-      <div className="container">
+      <div className="container" >
         <div className="top">
           <div className="location">
             <h2>{data.name}</h2>
@@ -87,6 +92,12 @@ function App() {
 
 export default App;
 
-/* {result.map((photo) => (
+/*
+{result.map((photo) => (
   <img src={photo.urls.small} alt="City"/>
-  ))} */
+))}
+*/
+
+/*
+{data.main ? <img src={result[0].urls.small} alt="City"/> : null}
+*/
