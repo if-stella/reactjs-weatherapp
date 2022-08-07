@@ -9,17 +9,23 @@ import {TbMist, TbTornado} from 'react-icons/tb';
 
 function App() {
 
-  const [data, setData] = useState({})
-  const [location, setLocation] = useState('')
+  const [data, setData] = useState({});
+  const [location, setLocation] = useState('');
+  const [result,setResult] = useState([]);
 
-  const MY_KEY = process.env.REACT_APP_API_KEY;
+  const AXIOS_KEY = process.env.REACT_APP_AXIOS_KEY;
+  const USPLA_KEY = process.env.REACT_APP_USPLA_KEY;
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${MY_KEY}`)
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${AXIOS_KEY}`)
       .then((response) => {
         setData(response.data)
-        console.log(response.data)
+      })
+      axios.get(`https://api.unsplash.com/search/photos?page=1&query=${location}&client_id=${USPLA_KEY}`)
+      .then((background) => {
+        console.log(background)
+        setResult(background.data.results)
       })
     setLocation('')
     }
@@ -35,8 +41,6 @@ function App() {
         placeholder='Enter Location'
         type="text" />
       </div>
-
-
       <div className="container">
         <div className="top">
           <div className="location">
@@ -82,3 +86,7 @@ function App() {
 }
 
 export default App;
+
+/* {result.map((photo) => (
+  <img src={photo.urls.small} alt="City"/>
+  ))} */
