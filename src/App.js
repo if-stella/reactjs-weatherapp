@@ -31,9 +31,11 @@ function App() {
   }
 
   const divStyle = {
-    backgroundImage: 'url(' + imgUrl + ')',
+    backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 21.57%, rgba(0, 0, 0, 0.153637) 83.67%, rgba(0, 0, 0, 0.5) 100%), url(' + imgUrl + ')',
     height: '100vh',
     backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center'
   };
 
   return (
