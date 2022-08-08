@@ -25,12 +25,14 @@ h1 {
   font-size:6rem;
   height:6rem;
   font-weight:300;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
   font-size:3rem;
   line-height:3rem;
   font-weight:700;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 .app {
@@ -65,7 +67,8 @@ input {
   font-family: 'MuseoModerno', cursive;
   color:#fff !important;
   border: 2px solid rgba(255,255,255,0.25);
-  background-color:rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  background-color:rgba(255,255,255,0.2);
   padding:0.75em 1.5em;
 }
 
@@ -127,6 +130,7 @@ input {
 .des-and-icon {
   display:flex;
   gap: 0.5em;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.05);
 }
 
 .weather-icon {
