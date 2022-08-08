@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import CountUp from 'react-countup';
+import Moment from 'react-moment';
+
+import {AiOutlineClockCircle} from 'react-icons/ai';
 import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2 } from 'react-icons/bs';
-import { FiDroplet } from 'react-icons/fi';
-import { TbTemperature,TbCloudStorm } from 'react-icons/tb';
+import { FiDroplet, FiSunrise, FiSunset} from 'react-icons/fi';
+import { TbTemperature,TbCloudStorm, TbMist, TbTornado } from 'react-icons/tb';
 import {MdOutlineWbSunny, MdOutlineWbCloudy} from 'react-icons/md';
-import {TbMist, TbTornado} from 'react-icons/tb';
 
 function App() {
 
@@ -67,10 +69,28 @@ function App() {
             { data.weather[0].main === "Snow" ? <p className="weather-icon"><BsCloudSnow /></p> : null }
             { data.weather[0].main === "Thunderstorm" ? <p className="weather-icon"><TbCloudStorm /></p> : null }
             { data.weather[0].main === "Tornado" ? <p className="weather-icon"><TbTornado /></p> : null }
-            <p>{data.weather[0].main}</p>
             </div> : null}
           </div>
         </div>
+        {data.main ?
+          <div className="timebox">
+            <div className="sunrise">
+              {data.main ? <p className="bold"><Moment unix format="HH:mm">{data.sys.sunrise}</Moment></p> : null}
+              {data.main ? <p className="small"><FiSunrise />Sunrise</p> : null}
+            </div>
+            <div className="time">
+
+              {data.main ? <p className="bold"><Moment unix format="HH:mm">{data.dt}</Moment></p> : null}
+              {data.main ? <p className="small"><AiOutlineClockCircle />Time</p> : null}
+            </div>
+            <div className="sunset">
+              {data.main ? <p className="bold"><Moment unix format="HH:mm">{data.sys.sunset}</Moment></p> : null}
+              {data.main ? <p className="small"><FiSunset />Sunset</p> : null}
+            </div>
+
+          </div> : null}
+
+
         {data.main ?  <div className="bottom">
           <div className="feelslike">
             {data.main ? <p className="bold"><CountUp end={data.main.feels_like.toFixed()} />°C</p> : null}
