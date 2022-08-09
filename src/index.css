@@ -96,23 +96,26 @@ input {
 
 .description {
   position:relative;
-  right:-90%;
+  right:-95%;
   transform-origin:0;
   transform:rotate(270deg);
 }
 
 .timebox {
   display:flex;
-  flex-direction:row;
-  justify-content: space-evenly;
+  flex-direction:column;
   text-align:center;
-  width:100%;
+  padding:1em 0.5em;
+  gap:1em;
   margin: 1rem auto;
-  border-radius:24px;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
   background-color:rgba(255,255,255,0.2);
   border: 2px solid rgba(255,255,255,0.25);
   backdrop-filter: blur(10px);
-  padding:0.5em;
+  position:absolute;
+  left:-0.25em;
+  top:13em;
 }
 
 .bottom {
@@ -133,6 +136,10 @@ input {
   font-weight:700;
 }
 
+.timefont {
+  font-size:1.25rem;
+}
+
 .small {
   font-size:1rem;
   display:flex;
@@ -149,4 +156,10 @@ input {
 
 .weather-icon {
   margin-top:6px;
+}
+
+@media only screen and (min-width: 700px) {
+  .timebox {
+    border-radius:24px;
+  }
 }
