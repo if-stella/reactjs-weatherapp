@@ -4,11 +4,10 @@ import CountUp from 'react-countup';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
-import {AiOutlineClockCircle} from 'react-icons/ai';
-import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2 } from 'react-icons/bs';
-import { FiDroplet, FiSunrise, FiSunset} from 'react-icons/fi';
+import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2, BsCloudSun, BsCloudMoon } from 'react-icons/bs';
+import { FiDroplet, FiSun, FiSunrise, FiSunset} from 'react-icons/fi';
 import { TbTemperature,TbCloudStorm, TbMist, TbTornado } from 'react-icons/tb';
-import {MdOutlineWbSunny, MdOutlineWbCloudy} from 'react-icons/md';
+import {RiMoonClearLine} from 'react-icons/ri';
 
 function App() {
 
@@ -59,6 +58,10 @@ function App() {
     setTime(localtime)
     }},[data, timezone])
 
+    const d = new Date(time);
+    let hour = d.getHours();
+    console.log(hour)
+
   const divStyle = {
     backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 21.57%, rgba(0, 0, 0, 0.153637) 83.67%, rgba(0, 0, 0, 0.5) 100%), url(' + imgUrl + ')',
     height: '100vh',
@@ -87,8 +90,8 @@ function App() {
           </div>
           <div className="description">
             {data.weather ? <div className="des-and-icon">
-            { data.weather[0].main === "Clear" ? <p className="weather-icon"><MdOutlineWbSunny /></p> : null }
-            { data.weather[0].main === "Clouds" ? <p className="weather-icon"><MdOutlineWbCloudy /></p> : null }
+            { data.weather[0].main === "Clear" ? <p className="weather-icon">{hour >= 6 && hour < 20 ? <FiSun /> : <RiMoonClearLine /> }</p> : null }
+            { data.weather[0].main === "Clouds" ? <p className="weather-icon">{hour >= 6 && hour < 20 ? <BsCloudSun /> : <BsCloudMoon /> }</p> : null }
             { data.weather[0].main === "Drizzle" ? <p className="weather-icon"><BsCloudRain /></p> : null }
             { data.weather[0].main === "Fog" ? <p className="weather-icon"><BsCloudFog2 /></p> : null }
             { data.weather[0].main === "Mist" ? <p className="weather-icon"><TbMist /></p> : null }
@@ -109,7 +112,7 @@ function App() {
             <div className="time">
 
               {data.main ? <p className="bold timefont"><Moment format="HH:mm">{time}</Moment></p> : null}
-              {data.main ? <p className="small"><AiOutlineClockCircle /></p> : null}
+              {data.main ? <p className="small">{hour >= 6 && hour < 20 ? <FiSun /> : <RiMoonClearLine /> }</p> : null}
             </div>
             <div className="sunset">
               {data.main ? <p className="bold timefont"><Moment format="HH:mm">{sunset}</Moment></p> : null}
@@ -140,4 +143,5 @@ function App() {
 export default App;
 /*
 {data.main ? <img src={result[0].urls.small} alt="City"/> : null}
+{hour >= 6 && hour < 20 ? "day!" : "night!" }
 */
