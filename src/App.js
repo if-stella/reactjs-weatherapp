@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import CountUp from 'react-countup';
 import Moment from 'react-moment';
@@ -13,6 +13,9 @@ import {MdOutlineWbSunny, MdOutlineWbCloudy} from 'react-icons/md';
 function App() {
 
   const [data, setData] = useState({});
+  const [sunrise, setSunrise] = useState('');
+  const [sunset, setSunset] = useState('');
+  const [time, setTime] = useState('');
   const [timezone, setTimezone] = useState('');
   const [location, setLocation] = useState('');
   const [imgUrl,setImgUrl] = useState([]);
@@ -34,6 +37,27 @@ function App() {
     setLocation('')
     }
   }
+
+  useEffect (() => {if (data && timezone)
+    {
+    const sunrise = new Date((data.sys.sunrise + data.timezone) * 1000)
+    const localsunrise = sunrise.toLocaleString("en-GB", { timeZone: "UTC" })
+    setSunrise(localsunrise)
+    }},[data, timezone])
+
+  useEffect (() => {if (data && timezone)
+    {
+    const sunset = new Date((data.sys.sunset + data.timezone) * 1000)
+    const localsunset = sunset.toLocaleString("en-GB", { timeZone: "UTC" })
+    setSunset(localsunset)
+    }},[data, timezone])
+
+  useEffect (() => {if (data && timezone)
+    {
+    const currenttime = new Date((data.dt + data.timezone) * 1000)
+    const localtime = currenttime.toLocaleString("en-GB", { timeZone: "UTC" })
+    setTime(localtime)
+    }},[data, timezone])
 
   const divStyle = {
     backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 21.57%, rgba(0, 0, 0, 0.153637) 83.67%, rgba(0, 0, 0, 0.5) 100%), url(' + imgUrl + ')',
@@ -79,16 +103,16 @@ function App() {
         {data.main ?
           <div className="timebox">
             <div className="sunrise">
-              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.sys.sunrise}</Moment></p> : null}
+              {data.main && sunrise ? <p className="bold timefont"><Moment format="HH:mm">{sunrise}</Moment></p> : null}
               {data.main ? <p className="small"><FiSunrise /></p> : null}
             </div>
             <div className="time">
 
-              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.dt}</Moment></p> : null}
+              {data.main ? <p className="bold timefont"><Moment format="HH:mm">{time}</Moment></p> : null}
               {data.main ? <p className="small"><AiOutlineClockCircle /></p> : null}
             </div>
             <div className="sunset">
-              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.sys.sunset}</Moment></p> : null}
+              {data.main ? <p className="bold timefont"><Moment format="HH:mm">{sunset}</Moment></p> : null}
               {data.main ? <p className="small"><FiSunset /></p> : null}
             </div>
           </div> : null}
