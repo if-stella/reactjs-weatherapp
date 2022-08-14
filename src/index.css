@@ -23,7 +23,8 @@ p {
 
 h1 {
   font-size:6rem;
-  height:6rem;
+  line-height:6rem;
+  height:4rem;
   font-weight:300;
   text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
 }
@@ -31,6 +32,7 @@ h1 {
 h2 {
   font-size:3rem;
   line-height:3rem;
+  height:2em;
   font-weight:700;
   text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
 }
@@ -79,8 +81,8 @@ input {
 
 .container {
   max-width:700px;
-  height:85vh;
-  padding: 0 1em;
+  height:84vh;
+  padding: 0 1.5em;
   margin:auto;
   position:relative;
   display:flex;
@@ -91,7 +93,12 @@ input {
 
 .top {
   width: 100%;
-  margin: 1rem auto;
+  overflow-wrap: break-word;
+  word-break: normal;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 }
 
 .description {
@@ -99,10 +106,11 @@ input {
   right:-95%;
   transform-origin:0;
   transform:rotate(270deg);
+  width: fit-content;
 }
 
 .timebox {
-  display:flex;
+  display:none;
   flex-direction:column;
   text-align:center;
   padding:1em 0.5em;
@@ -116,6 +124,7 @@ input {
   position:absolute;
   left:-0.25em;
   top:13em;
+  width:5em;
 }
 
 .bottom {

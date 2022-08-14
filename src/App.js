@@ -56,11 +56,9 @@ function App() {
     const currenttime = new Date((data.dt + data.timezone) * 1000)
     const localtime = currenttime.toLocaleString("en-GB", { timeZone: "UTC" })
     setTime(localtime)
+    console.log(time)
     }},[data, timezone])
 
-    const d = new Date(time);
-    let hour = d.getHours();
-    console.log(hour)
 
   const divStyle = {
     backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 21.57%, rgba(0, 0, 0, 0.153637) 83.67%, rgba(0, 0, 0, 0.5) 100%), url(' + imgUrl + ')',
@@ -90,8 +88,8 @@ function App() {
           </div>
           <div className="description">
             {data.weather ? <div className="des-and-icon">
-            { data.weather[0].main === "Clear" ? <p className="weather-icon">{hour >= 6 && hour < 20 ? <FiSun /> : <RiMoonClearLine /> }</p> : null }
-            { data.weather[0].main === "Clouds" ? <p className="weather-icon">{hour >= 6 && hour < 20 ? <BsCloudSun /> : <BsCloudMoon /> }</p> : null }
+            { data.weather[0].main === "Clear" ? <p className="weather-icon"><FiSun /></p> : null }
+            { data.weather[0].main === "Clouds" ? <p className="weather-icon"><BsCloudSun /></p> : null }
             { data.weather[0].main === "Drizzle" ? <p className="weather-icon"><BsCloudRain /></p> : null }
             { data.weather[0].main === "Fog" ? <p className="weather-icon"><BsCloudFog2 /></p> : null }
             { data.weather[0].main === "Mist" ? <p className="weather-icon"><TbMist /></p> : null }
@@ -106,16 +104,15 @@ function App() {
         {data.main ?
           <div className="timebox">
             <div className="sunrise">
-              {data.main && sunrise ? <p className="bold timefont"><Moment format="HH:mm">{sunrise}</Moment></p> : null}
+              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.sys.sunrise}</Moment></p> : null}
               {data.main ? <p className="small"><FiSunrise /></p> : null}
             </div>
             <div className="time">
-
-              {data.main ? <p className="bold timefont"><Moment format="HH:mm">{time}</Moment></p> : null}
-              {data.main ? <p className="small">{hour >= 6 && hour < 20 ? <FiSun /> : <RiMoonClearLine /> }</p> : null}
+              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.dt}</Moment></p> : null}
+              {data.main ? <p className="small"><FiSun /></p> : null}
             </div>
             <div className="sunset">
-              {data.main ? <p className="bold timefont"><Moment format="HH:mm">{sunset}</Moment></p> : null}
+              {data.main ? <p className="bold timefont"><Moment unix format="HH:mm">{data.sys.sunset}</Moment></p> : null}
               {data.main ? <p className="small"><FiSunset /></p> : null}
             </div>
           </div> : null}
