@@ -81,8 +81,8 @@ input {
 
 .container {
   max-width:700px;
-  height:84vh;
-  padding: 0 1.5em;
+  height:85vh;
+  padding: 0 1em;
   margin:auto;
   position:relative;
   display:flex;
@@ -93,12 +93,7 @@ input {
 
 .top {
   width: 100%;
-  overflow-wrap: break-word;
-  word-break: normal;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+  margin: 1rem auto;
 }
 
 .description {
@@ -110,7 +105,7 @@ input {
 }
 
 .timebox {
-  display:none;
+  display:flex;
   flex-direction:column;
   text-align:center;
   padding:1em 0.5em;
@@ -123,7 +118,7 @@ input {
   backdrop-filter: blur(10px);
   position:absolute;
   left:-0.25em;
-  top:13em;
+  top:16em;
   width:5em;
 }
 
