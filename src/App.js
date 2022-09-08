@@ -75,7 +75,7 @@ function App() {
         value={location}
         onChange={event => setLocation(event.target.value)}
         onKeyPress={searchLocation}
-        placeholder='Enter Location'
+        placeholder='Enter a location'
         type="text" />
       </div>
       <div className="container" >
@@ -138,7 +138,3 @@ function App() {
 }
 
 export default App;
-/*
-{data.main ? <img src={result[0].urls.small} alt="City"/> : null}
-{hour >= 6 && hour < 20 ? "day!" : "night!" }
-*/
