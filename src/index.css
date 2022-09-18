@@ -24,17 +24,13 @@ p {
 h1 {
   font-size:6rem;
   line-height:6rem;
-  height:4rem;
   font-weight:300;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
-  font-size:3rem;
-  line-height:3rem;
-  height:2em;
+  font-size:2rem;
+  line-height:2rem;
   font-weight:700;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .app {
@@ -42,13 +38,12 @@ h2 {
   height:100vh;
   position:relative;
   background: rgba(0,0,0,0.5);
-  color:#fff;
 }
 
 .app:before {
   content: '';
   width:100%;
-  height:100%;
+  height:100vh;
   background: url('https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2865&q=80') no-repeat center center/cover;
   position:absolute;
   top:0;
@@ -60,7 +55,6 @@ h2 {
   text-align:center;
   position:relative;
   padding-top:2em;
-  margin-bottom:1em;
 }
 
 input {
@@ -69,7 +63,7 @@ input {
   font-family: 'MuseoModerno', cursive;
   color:#fff !important;
   border: 2px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   background-color:rgba(255,255,255,0.2);
   padding:0.75em 1.5em;
 }
@@ -80,9 +74,7 @@ input {
 }
 
 .container {
-  max-width:700px;
-  height:85vh;
-  padding: 0 1em;
+  height:100vh;
   margin:auto;
   position:relative;
   display:flex;
@@ -91,21 +83,56 @@ input {
   justify-content: space-between;
 }
 
-.top {
-  width: 100%;
-  margin: 1rem auto;
+.top-container {
+  position:relative;
 }
 
-.description {
+.bg-circle {
+  position:absolute;
+  top:-22px;
+  left:-22px;
+  z-index:1;
+}
+
+.rotate-slow {
+  animation-name: rotate;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.rotate-faster {
+  animation-name: rotate;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate{
+  from{ transform: rotate(-360deg); }
+  to{ transform: rotate(360deg); }
+}
+
+.top {
   position:relative;
-  right:-95%;
-  transform-origin:0;
-  transform:rotate(270deg);
-  width: fit-content;
+  border-radius:100%;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  padding-top:3em;
+  padding-bottom:2em;
+  width:311px;
+  height:311px;
+  color:rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(5px);
+  background-color:rgba(255,255,255,0.5);
+  z-index:2;
 }
 
 .timebox {
-  display:flex;
+  display:none;
   flex-direction:column;
   text-align:center;
   padding:1em 0.5em;
@@ -118,22 +145,27 @@ input {
   backdrop-filter: blur(10px);
   position:absolute;
   left:-0.25em;
-  top:16em;
   width:5em;
 }
 
 .bottom {
+  width:100%;
+  background-color:rgba(255,255,255,0.78);
+  backdrop-filter: blur(1px);
+  display:flex;
+  color:rgba(0, 0, 0, 0.6);
+  justify-content:center;
+}
+
+.innerbot {
   display:flex;
   flex-direction:row;
-  justify-content: space-evenly;
+  align-items:center;
+  justify-content: space-between;
   text-align:center;
+  padding:4px 64px 16px 64px;
   width:100%;
-  margin: 1rem auto;
-  border-radius:24px;
-  background-color:rgba(255,255,255,0.2);
-  border: 2px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(10px);
-  padding:0.5em;
+  max-width:500px;
 }
 
 .bold {
@@ -155,15 +187,48 @@ input {
 .des-and-icon {
   display:flex;
   gap: 0.5em;
-  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.05);
+  text-align:center;
+  justify-content:center;
 }
 
 .weather-icon {
   margin-top:6px;
 }
 
-@media only screen and (min-width: 700px) {
-  .timebox {
-    border-radius:24px;
+.waves {
+  position:absolute;
+  bottom:90.5px;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px;
+  min-height:20px;
+  max-height:50px;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% {
+    transform: translate3d(85px,0,0);
   }
 }
