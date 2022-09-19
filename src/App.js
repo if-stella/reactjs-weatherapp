@@ -21,6 +21,7 @@ function App() {
   const [timezone, setTimezone] = useState('');
   const [location, setLocation] = useState('');
   const [imgUrl,setImgUrl] = useState([]);
+  const [maincolor, setMaincolor] = useState('');
 
   const AXIOS_KEY = process.env.REACT_APP_AXIOS_KEY;
   const USPLA_KEY = process.env.REACT_APP_USPLA_KEY;
@@ -35,10 +36,13 @@ function App() {
       axios.get(`https://api.unsplash.com/search/photos?page=1&query=${location}&client_id=${USPLA_KEY}`)
       .then((background) => {
         setImgUrl(background.data.results[5].urls.regular)
+        setMaincolor(background.data.results[5].color)
       })
     setLocation('')
     }
   }
+
+  console.log(maincolor)
 
   useEffect (() => {if (data && timezone)
     {
@@ -63,7 +67,6 @@ function App() {
 
     const d = new Date(time);
     let hour = d.getHours();
-    console.log(hour)
 
   const divStyle = {
     backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 21.57%, rgba(0, 0, 0, 0.153637) 83.67%, rgba(0, 0, 0, 0.5) 100%), url(' + imgUrl + ')',
@@ -85,11 +88,11 @@ function App() {
           />
         {data.main ?
         <div className="top-container">
-          <div className="top">
-            <h2>{data.name}</h2>
+          <div className="top" style={{borderColor: maincolor}}>
+            <h2 style={{color: maincolor}}>{data.name}</h2>
             {data.main ? <h1><CountUp end={data.main.temp.toFixed()} />°C</h1> : null}
             <div className="description">
-              {data.weather ? <div className="des-and-icon">
+              {data.weather ? <div className="des-and-icon" style={{color: maincolor}}>
               { data.weather[0].main === "Clear" ? <p className="weather-icon"><FiSun /></p> : null }
               { data.weather[0].main === "Clouds" ? <p className="weather-icon"><BsCloudSun /></p> : null }
               { data.weather[0].main === "Drizzle" ? <p className="weather-icon"><BsCloudRain /></p> : null }
@@ -139,17 +142,17 @@ function App() {
           <div className="innerbot">
             <div className="feelslike">
               {data.main ? <p className="bold"><CountUp end={data.main.feels_like.toFixed()} />°C</p> : null}
-              {data.main ? <p className="small"><TbTemperature />Feels like</p> : null}
+              {data.main ? <p className="small" style={{color: maincolor}}><TbTemperature />Feels like</p> : null}
             </div>
             <div className="humidity">
               {data.main ? <p className="bold">
                 <CountUp
                 end={data.main.humidity} />%</p> : null}
-              {data.main ? <p className="small"><FiDroplet/>Humidity</p> : null}
+              {data.main ? <p className="small" style={{color: maincolor}}><FiDroplet/>Humidity</p> : null}
             </div>
             <div className="wind">
               {data.wind ? <p className="bold"><CountUp end={data.wind.speed} /> m/s</p> : null}
-              {data.main ? <p className="small"><BsWind/>Wind</p> : null}
+              {data.main ? <p className="small" style={{color: maincolor}}><BsWind/>Wind</p> : null}
             </div>
           </div>
         </div> : null}
