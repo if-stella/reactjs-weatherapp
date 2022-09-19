@@ -38,6 +38,7 @@ h2 {
   height:100vh;
   position:relative;
   background: rgba(0,0,0,0.5);
+  overflow-x: hidden;
 }
 
 .app:before {
@@ -51,26 +52,25 @@ h2 {
   z-index:-1;
 }
 
-.search {
-  text-align:center;
-  position:relative;
-  padding-top:2em;
-}
 
 input {
   border-radius:24px;
   font-size:1rem;
   font-family: 'MuseoModerno', cursive;
-  color:#fff !important;
-  border: 2px solid rgba(255,255,255,0.25);
-  backdrop-filter: blur(5px);
-  background-color:rgba(255,255,255,0.2);
+  color:rgba(0, 0, 0, 0.75);
+  border-style:none;
+  backdrop-filter: blur(3px);
+  background-color:rgba(255,255,255,0.75);
   padding:0.75em 1.5em;
+  width:311px;
+  text-align:left;
+  position:relative;
+  margin-top:2em;
 }
 
 ::placeholder {
   font-size:1rem;
-  color:rgba(255, 255, 255, 0.9);
+  color:rgba(0, 0, 0, 0.6);
 }
 
 .container {
@@ -120,8 +120,8 @@ input {
   display:flex;
   flex-direction:column;
   justify-content:space-around;
-  padding-top:3em;
-  padding-bottom:2em;
+  padding-bottom:1em;
+  padding-top:2em;
   width:311px;
   height:311px;
   color:rgba(0, 0, 0, 0.6);
@@ -151,7 +151,7 @@ input {
 .bottom {
   width:100%;
   background-color:rgba(255,255,255,0.78);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(3px);
   display:flex;
   color:rgba(0, 0, 0, 0.6);
   justify-content:center;
@@ -189,6 +189,7 @@ input {
   gap: 0.5em;
   text-align:center;
   justify-content:center;
+
 }
 
 .weather-icon {
@@ -230,5 +231,53 @@ input {
   }
   100% {
     transform: translate3d(85px,0,0);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  h1 {
+    font-size:4.5rem;
+    line-height:4.5rem;
+  }
+
+  h2 {
+    font-size:1.5rem;
+    line-height:1.5rem;
+  }
+
+  .innerbot {
+    padding:4px 24px 16px 24px;
+  }
+
+  .waves {
+    bottom:80px;
+  }
+
+  .small {
+    font-size:0.84rem;
+  }
+
+  .bold {
+    font-size:1.25rem;
+  }
+
+  .top {
+    width:280px;
+    height:280px;
+  }
+
+  p {
+    font-size:1.25rem;
+  }
+
+  .weather-icon {
+    margin-top:4px;
+  }
+
+  .bg-circle {
+    width:343px;
+    height:343px;
+    top:-32px;
+    left:-32px;
   }
 }
