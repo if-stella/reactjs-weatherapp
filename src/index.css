@@ -28,8 +28,8 @@ h1 {
 }
 
 h2 {
-  font-size:2rem;
-  line-height:2rem;
+  font-size:1.75rem;
+  line-height:1.75rem;
   font-weight:400;
 }
 
@@ -57,7 +57,6 @@ input {
   border-radius:24px;
   font-size:1rem;
   font-family: 'MuseoModerno', cursive;
-  color:rgba(0, 0, 0, 0.75);
   border-style:none;
   backdrop-filter: blur(3px);
   background-color:rgba(255,255,255,0.75);
@@ -120,8 +119,8 @@ input {
   display:flex;
   flex-direction:column;
   justify-content:space-around;
-  padding-bottom:0.5em;
-  padding-top:1.5em;
+  padding-bottom:2em;
+  padding-top:4em;
   width:311px;
   height:311px;
   color:rgba(0, 0, 0, 0.6);
@@ -234,10 +233,10 @@ input {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   h1 {
-    font-size:4.5rem;
-    line-height:4.5rem;
+    font-size:4rem;
+    line-height:4rem;
   }
 
   h2 {
