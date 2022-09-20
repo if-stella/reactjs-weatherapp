@@ -25,12 +25,16 @@ h1 {
   font-size:6rem;
   line-height:6rem;
   font-weight:300;
+  text-shadow: 5px 5px 10px rgba(163, 177, 198, 0.25),
+    -5px -5px 15px rgba(255, 255, 255, 1);
 }
 
 h2 {
   font-size:1.75rem;
   line-height:1.75rem;
   font-weight:400;
+  text-shadow: 5px 5px 10px rgba(163, 177, 198, 0.25),
+  -5px -5px 15px rgba(255, 255, 255, 1);
 }
 
 .app {
@@ -169,6 +173,8 @@ input {
 
 .bold {
   font-weight:700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1),
+  -2px -2px 4px rgba(255, 255, 255, 0.25);
 }
 
 .timefont {

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import CountUp from 'react-countup';
 import Moment from 'react-moment';
+import ColorContrastChecker from 'color-contrast-checker';
 import 'moment-timezone';
 
 import { BsWind, BsCloudRain, BsCloudDrizzle, BsCloudSnow, BsCloudFog2, BsCloudSun } from 'react-icons/bs';
@@ -21,7 +22,7 @@ function App() {
   const [timezone, setTimezone] = useState('');
   const [location, setLocation] = useState('');
   const [imgUrl,setImgUrl] = useState([]);
-  const [maincolor, setMaincolor] = useState('');
+  let [maincolor, setMaincolor] = useState('');
 
   const AXIOS_KEY = process.env.REACT_APP_AXIOS_KEY;
   const USPLA_KEY = process.env.REACT_APP_USPLA_KEY;
@@ -41,8 +42,6 @@ function App() {
     setLocation('')
     }
   }
-
-  console.log(maincolor)
 
   useEffect (() => {if (data && timezone)
     {
@@ -84,6 +83,18 @@ function App() {
     }
   };
 
+
+  var ccc = new ColorContrastChecker();
+
+  var color1 = "#fff";
+
+
+  if (ccc.isLevelAA(color1, maincolor, 120)) {
+  } else {
+    maincolor = "#42566c";
+  }
+
+
   return (
     <div className="app" style={divStyle}>
       <div className="container">
@@ -97,9 +108,9 @@ function App() {
           />
         {data.main ?
         <div className="top-container">
-          <div className="top" style={{borderColor: maincolor}}>
+          <div className="top" style={{background: `radial-gradient(rgba(255,255,255,0.5) 0%, ${maincolor} 350%)`}}>
             <h2 style={{color: maincolor}}>{truncateString(data.name, 12)}</h2>
-            {data.main ? <h1><CountUp end={data.main.temp.toFixed()} />°C</h1> : null}
+            {data.main ? <h1 style={{color: maincolor}}><CountUp end={data.main.temp.toFixed()} />°C</h1> : null}
             <div className="description">
               {data.weather ? <div className="des-and-icon" style={{color: maincolor}}>
               { data.weather[0].main === "Clear" ? <p className="weather-icon"><FiSun /></p> : null }
@@ -148,20 +159,20 @@ function App() {
           </g>
           </svg> : null}
         {data.main ?  <div className="bottom">
-          <div className="innerbot">
+          <div className="innerbot" style={{color: maincolor}}>
             <div className="feelslike">
               {data.main ? <p className="bold"><CountUp end={data.main.feels_like.toFixed()} />°C</p> : null}
-              {data.main ? <p className="small" style={{color: maincolor}}><TbTemperature />Feels like</p> : null}
+              {data.main ? <p className="small"><TbTemperature />Feels like</p> : null}
             </div>
             <div className="humidity">
               {data.main ? <p className="bold">
                 <CountUp
                 end={data.main.humidity} />%</p> : null}
-              {data.main ? <p className="small" style={{color: maincolor}}><FiDroplet/>Humidity</p> : null}
+              {data.main ? <p className="small"><FiDroplet/>Humidity</p> : null}
             </div>
             <div className="wind">
               {data.wind ? <p className="bold"><CountUp end={data.wind.speed} /> m/s</p> : null}
-              {data.main ? <p className="small" style={{color: maincolor}}><BsWind/>Wind</p> : null}
+              {data.main ? <p className="small"><BsWind/>Wind</p> : null}
             </div>
           </div>
         </div> : null}
