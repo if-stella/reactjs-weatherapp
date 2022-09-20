@@ -76,6 +76,14 @@ function App() {
     backgroundPosition: 'center'
   };
 
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + '...';
+    } else {
+      return str;
+    }
+  };
+
   return (
     <div className="app" style={divStyle}>
       <div className="container">
@@ -85,11 +93,12 @@ function App() {
             onKeyPress={searchLocation}
             placeholder='Enter a location...'
             type="text"
+            style={{color: maincolor}}
           />
         {data.main ?
         <div className="top-container">
           <div className="top" style={{borderColor: maincolor}}>
-            <h2 style={{color: maincolor}}>{data.name}</h2>
+            <h2 style={{color: maincolor}}>{truncateString(data.name, 12)}</h2>
             {data.main ? <h1><CountUp end={data.main.temp.toFixed()} />°C</h1> : null}
             <div className="description">
               {data.weather ? <div className="des-and-icon" style={{color: maincolor}}>
